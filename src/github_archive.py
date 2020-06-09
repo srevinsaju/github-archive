@@ -50,8 +50,8 @@ class Archive():
                 print(data)
                 Archive.logs(data)
             except subprocess.TimeoutExpired:
-                sys.exit(
-                    f'Error: github-archive timed out cloning {repo.name}.')
+                print("timeout cloning", str(repo.name))
+                pass
             except subprocess.CalledProcessError as error:
                 data = f'{repo.name}\n{error}'
                 print(data)
