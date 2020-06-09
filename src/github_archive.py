@@ -246,19 +246,12 @@ class Archive():
             print(data)
             Archive.logs(data)
 
-        # Clean up logs before finishing)
-        for root, dirs, files in os.walk(Archive.LOG_PATH):  # pylint: disable=W0612
-            for file in files:
-                if file.mtime < Archive.LOG_LIFE:
-                    os.remove(file)
-                    print('Logs cleaned up')
-
         # TODO: Use threading.wait to check if all processes are finished
         time.sleep(6)
         execution_time = f'Execution time: {datetime.now() - start_time}.'
         finish_message = f'GitHub Archive complete! {execution_time}'
         print(finish_message)
-        Archive.logs(finish_message)
+
 
     @classmethod
     def logs(cls, data):
